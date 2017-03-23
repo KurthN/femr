@@ -1,4 +1,4 @@
-@(createForm: Form[femr.ui.models.sessions.CreateViewModel])
+@(createForm: Form[femr.ui.models.sessions.CreateViewModel], failedLogin: Boolean = false)
 
 @import femr.ui.views.html.layouts.main
 @import femr.ui.controllers.routes.SessionsController
@@ -9,7 +9,11 @@
 
     @helper.form(action = SessionsController.createPost(), 'class -> "form-signin") {
         <div id="login">
+
             <h1>Please sign in</h1>
+           @if(failedLogin){
+               <SPAN STYLE="color: #FF0000; font-size: 15 pt"><b>Invalid username or password</b></span>
+           }
             <input type="text" name="email" placeholder="Email" />
             <input type="password" name="password" placeholder="Password" />
             <input type="submit" value="Log in" />
